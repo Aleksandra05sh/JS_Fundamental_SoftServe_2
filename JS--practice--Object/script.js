@@ -147,22 +147,13 @@ var  mp3 = {
 
   currentSongNumber:0,
 
+
   onOff: function() {
     mp3.isOn = !mp3.isOn;
-    if (mp3.isOn) {
-      console.log("On")
-    } else {
-      console.log("Off")
-    }
   },
 
   playStop: function() {
-  mp3.isPlay = !mp3.isPlay;
-  if (mp3.isPlay) {
-      console.log("Playing");
-    } else {
-      console.log("Stop");
-    }
+    mp3.isPlay = !mp3.isPlay;
   },
 
   nextSong: function() {
@@ -170,9 +161,6 @@ var  mp3 = {
     if (mp3.currentSongNumber > mp3.playList.length-1){
       mp3.currentSongNumber = 0;
     }
-    console.log("Песня: " + mp3.playList[mp3.currentSongNumber].title);
-    console.log("Автор: " + mp3.playList[mp3.currentSongNumber].singer);
-
   },
 
   previousSong: function() {
@@ -180,8 +168,6 @@ var  mp3 = {
     if (mp3.currentSongNumber < 0) {
       mp3.currentSongNumber = mp3.playList.length-1;
     }
-    console.log("Песня: " + mp3.playList[mp3.currentSongNumber].title);
-    console.log("Автор: " + mp3.playList[mp3.currentSongNumber].singer)
   },
 
   getCurrentSongTitle: function() {
@@ -224,12 +210,9 @@ mp3.previousSong();
 mp3.getCurrentSongSinger();
 mp3.getCurrentSongTitle();
 mp3.addToFavorite();
-// console.log(mp3.favoriteSongs);
 mp3.addToFavorite();
-// console.log(mp3.favoriteSongs);
 mp3.nextSong();
 mp3.addToFavorite();
-// console.log(mp3.favoriteSongs);
 mp3.playFavoriteSongs();
 
 
