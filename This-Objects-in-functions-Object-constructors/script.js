@@ -15,33 +15,34 @@ console.log(calculator.mul());*/
 
 
 var calculator = {
+  fistNumber: 1,
+  secondNumber: 1,
 
   read: function() {
-    this.fistNumber = Number(prompt("Введите первое значение", 1));
-    this.secondNumber = Number(prompt("Введите второе значение", 1));
+    var checkFirstNumber = Number(prompt("Введите первое значение", 1));
+
+    if (typeof checkFirstNumber === "number" && !isNaN(checkFirstNumber)) {
+      this.fistNumber = checkFirstNumber;
+    }
+
+    var checkSecondNumber = Number(prompt("Введите второе значение", 1));
+    
+    if (typeof checkSecondNumber === "number" && !isNaN(checkSecondNumber)) {
+      this.secondNumber = checkSecondNumber;
+    }
   },
 
   sum: function() {
-    if (typeof this.fistNumber === "number" && typeof this.secondNumber === "number" ) {
       return this.fistNumber + this.secondNumber;
-    } else {
-      this.read();
-      return this.sum();
-    }
   },
 
   mul: function() {
-    if (typeof this.fistNumber === "number" && typeof this.secondNumber === "number" ) {
       return this.fistNumber * this.secondNumber;
-    } else {
-      this.read();
-      return this.mul();
-    }
   },
  };
 
 
-//  calculator.read();
+// calculator.read();
 // console.log(calculator.mul());
 // console.log(calculator.sum());
 
@@ -271,9 +272,6 @@ function Player(playList) {
 
 
 var mp3 = new Player(playList);
-
-
-
 
 
 
