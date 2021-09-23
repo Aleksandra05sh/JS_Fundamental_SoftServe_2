@@ -87,8 +87,7 @@ function format(beginMsg, endMsg) {
 }
 
 var tomFormat = function(beginMsg, endMsg) {
-  user.format = format;
-  user.format(beginMsg, endMsg);
+  format.call(user, beginMsg, endMsg);
 }
 
 tomFormat("<<<", ">>>"); // "<<<Tom>>>"
@@ -132,22 +131,24 @@ console.log(qudraMul(5)); // 20
 
 /*Задание №3.
 Напишите аналог метода bind():*/
+
 function bind(func, context) {
 
-  context.method = func;
-
-  return function () {
-    context.method()
-  } 
-} 
+  return function() {
+    func.call(context);
+  };
+}
 
 function func() {
-   console.log(this.name + " - "+ this.age);
+  console.log(this.name + " - "+ this.age);
 }
 var user = {
-   name: "Tom",
-   age: 20
+  name: "Tom",
+  age: 20
 };
+
 var f = bind(func, user);
 f(); // "Tom – 20"
+
+
 
