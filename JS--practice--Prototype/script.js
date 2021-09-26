@@ -43,20 +43,24 @@ Player.prototype.playStop =  function() {
   };
 
 Player.prototype.nextSong = function() {
-    this.currentSongNumber += 1;
-    if (this.currentSongNumber > this.playList.length-1){
-      this.currentSongNumber = 0;
+    if (this.currentSongNumber < this.playList.length-2){
+      this.currentSongNumber += 1;
+    }
+    else {
+      this.currentSongNumber = 0
     }
   };
 
 Player.prototype.previousSong = function() {
-    this.currentSongNumber -= 1;
-    if (this.currentSongNumber < 0) {
+    if (this.currentSongNumber === 0) {
       this.currentSongNumber = this.playList.length-1;
+    } else {
+      this.currentSongNumber -= 1;
     }
   };
 
 Player.prototype.getCurrentSongTitle = function() {
+  console.log(this.playList[this.currentSongNumber])
     console.log("Песня: " + this.playList[this.currentSongNumber].title);
   };
 
@@ -88,4 +92,8 @@ Player.prototype.playFavoriteSongs = function() {
 
   var mp3 = new Player(playList);
 //   console.dir(mp3)
+
+
+
+
   
