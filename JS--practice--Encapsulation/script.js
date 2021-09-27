@@ -8,36 +8,36 @@
 
 
 function Player() {
-  this._volume = 0;
+  this.__volume = 0;
 }
 
 Player.prototype.getVolume = function() {
-  return this._volume;
-}
+  return this.__volume;
+};
 
 Player.prototype.setVolume = function(unverifiedVolume) {
-  if (this._volumeValid(unverifiedVolume)) {
-    this._volume = unverifiedVolume;
+  if (this.__volumeValid(unverifiedVolume)) {
+    this.__volume = unverifiedVolume;
   }
-}
+};
 
 Player.prototype.volume = function(unverifiedVolume) {
   if (unverifiedVolume === undefined) {
-    return this._volume;
+    return this.__volume;
   } else {
-    if (this._volumeValid(unverifiedVolume)) {
-      this._volume = unverifiedVolume;
+    if (this.__volumeValid(unverifiedVolume)) {
+      this.__volume = unverifiedVolume;
     }
   }
-}
+};
 
-Player.prototype._volumeValid = function(checkRange) {
+Player.prototype.__volumeValid = function(checkRange) {
   if (checkRange >= 0 && checkRange <= 100) {
     return true;
   } else {
     return false;
   }
-}
+};
 
 var player = new Player();
 // console.log(player.volume(100));
@@ -67,10 +67,10 @@ Adder.prototype.firstNumber = function(firstNumber) {
   } else {
     if (this.__numberValid(firstNumber)) {
       this.__firstNumber = firstNumber;
-      return this.__calc();
+      this.__calc();
     }
   }
-}
+};
 
 Adder.prototype.secondNumber = function(secondNumber) {
   if (secondNumber === undefined) {
@@ -78,14 +78,14 @@ Adder.prototype.secondNumber = function(secondNumber) {
   } else {
     if (this.__numberValid(secondNumber)) {
       this.__secondNumber = secondNumber;
-      return this.__calc();
+      this.__calc();
     }
   }
-}
+};
 
 Adder.prototype.__calc = function() {
   this.result = this.__firstNumber + this.__secondNumber;
-}
+};
 
 Adder.prototype.__numberValid = function(value) {
   if (typeof value === "number" && !isNaN(value) && isFinite(value)) {
@@ -93,8 +93,9 @@ Adder.prototype.__numberValid = function(value) {
   } else {
     return false;
   }
-}
+};
 
 var add = new Adder();
+
 
 
