@@ -65,7 +65,7 @@ Rectangle.prototype = Object.create(GeometricFigure.prototype);
 Rectangle.prototype.constructor = Rectangle;
 
 Rectangle.prototype.info = function () {
-  console.log("Координаты фигуры: ", " x: ", this.__axisX, " y: ", this.__axisY, " . Диагональ фигуры: ", this.__diagonalLength);
+  console.log("Координаты фигуры: ", " x: ", this.getAxisX(), " y: ", this.getAxisY(), " . Диагональ фигуры: ", this.__diagonalLength);
 };
 
 Rectangle.prototype.__diagonalLengthValid = function(value) {
@@ -96,7 +96,7 @@ function Сircle (x, y, radius){
 Сircle.prototype.constructor = Сircle;
 
 Сircle.prototype.info = function () {
-  console.log("Координаты фигуры: ", " x: ", this.__axisX, " y: ", this.__axisY, " . Радиус фигуры: ", this.__radiusLength);
+  console.log("Координаты фигуры: ", " x: ", this.getAxisX(), " y: ", this.getAxisY(), " . Радиус фигуры: ", this.__radiusLength);
 }
 
 Сircle.prototype.__radiusLengthValid = function(value) {
