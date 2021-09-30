@@ -92,7 +92,6 @@ function Сircle (x, y, radius){
 };
 
 Сircle.prototype = Object.create(GeometricFigure.prototype);
-
 Сircle.prototype.constructor = Сircle;
 
 Сircle.prototype.info = function () {
@@ -111,5 +110,73 @@ function Сircle (x, y, radius){
 var cir = new Сircle(-6, 6, -12);
 cir.info();
 
+
+
+// Задание №2. Полиморфизм
+// Создайте тип объектов Квадрат, определите защищенное свойство для хранения значения стороны. Для доступа к этому свойству определите необходимые метод/методы. Также определите публичный метод, который возвращает периметр.
+// На основе этого типа создайте тип Куб и переопределите метод получения периметра.
+// Реализуйте 2 версии текущего задания, используя следующие способы переопределения:
+// 1. Без расширения (полностью переопределить метод родителя);
+// 2. С расширением (использовать результат метода родителя для дальнейших расчетов)
+
+function Square(unverifiedSide) {
+  if (this._sideValid(unverifiedSide)) {
+    this._side = unverifiedSide;
+  } else {
+    this._side = 1;
+  }  
+}
+
+Square.prototype.getSide = function() {
+  return this._side;
+};
+
+Square.prototype.setSide = function(unverifiedSide) {
+  if (this._sideValid) {
+    this._side = unverifiedSide;
+  }
+};
+
+Square.prototype._sideValid = function(side) {
+  if (typeof side === "number" && side > 0 && isFinite(side)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+Square.prototype.perimeterP = function() {
+  return this._side * 4;
+};
+
+var sq = new Square(-6);
+
+// 1. Без расширения (полностью переопределить метод родителя);
+
+function Cube1(unverifiedSide) {
+  Square.call(this, unverifiedSide);
+}
+
+Cube1.prototype = Object.create(Square.prototype);
+Cube1.prototype.constructor = Cube1;
+Cube1.prototype.perimeterP = function() {
+  return this._side * 12;
+};
+
+
+// 2. С расширением (использовать результат метода родителя для дальнейших расчетов)
+
+function Cube2(unverifiedSide) {
+  Square.call(this, unverifiedSide);
+}
+
+Cube2.prototype = Object.create(Square.prototype);
+Cube2.prototype.constructor = Cube2;
+Cube2.prototype.perimeterP = function() {
+  return 3 * Square.prototype.perimeterP.call(this);
+};
+
+var cb1 = new Cube1(4);
+var cb2 = new Cube2(7);
 
 
