@@ -132,7 +132,7 @@ Square.prototype.getSide = function() {
 };
 
 Square.prototype.setSide = function(unverifiedSide) {
-  if (this._sideValid) {
+  if (this._sideValid(unverifiedSide)) {
     this._side = unverifiedSide;
   }
 };
