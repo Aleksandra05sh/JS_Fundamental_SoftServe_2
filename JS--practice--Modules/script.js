@@ -16,24 +16,26 @@ var perimetrSquare = (function () {
     return sideA * sideB;
   };
 
+  function sideValid (side) {
+    if (typeof side === "number" && side > 0 ){
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return {
     setSideA: function(a) {
-      if (this.sideValid(a)){
+      if (sideValid(a)){
         sideA = a;
       }
     },
     setSideB: function(b) {
-      if (this.sideValid(b)){
+      if (sideValid(b)){
         sideB = b;
       }
     },
-    sideValid: function(side) {
-      if (typeof side === "number" && side > 0 ){
-        return true;
-      } else {
-        return false;
-      }
-    },
+
     perimetr: function () {
           return perimetr();
        },
