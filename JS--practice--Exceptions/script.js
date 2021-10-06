@@ -16,5 +16,20 @@ function sumSliceArray(arr, first, second) {
 
 var array = [1, 2, 3, 4, 5, 6]
 
-var res = sumSliceArray(array, 7, 3);
-console.log(res);
+// var res = sumSliceArray(array, 7, 3);
+// console.log(res);
+
+
+// Задание №2.
+// Возьмите функцию sumSliceArray(arr, first, second) из предыдущего задания и напишите код, который ее использует, но перед самим использованием проверяет все параметры на правильность. Таким образом, никогда не должны генерироваться исключения, которые есть внутри данной функции.
+
+
+
+function checkSumSliceArray(arr, first, second) {
+  if (typeof first === 'number' && typeof second === 'number' && first <= arr.length && second <= arr.length) {
+    return sumSliceArray(arr, first, second);
+  }
+}  
+  
+var res2 = checkSumSliceArray(array, 1, 2)
+
