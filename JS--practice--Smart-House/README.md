@@ -21,3 +21,31 @@
          getTemperature() : Number
          increaseTemperature() : void
          decreaseTemperature() : void */
+
+
+/*5. Чертеж второго устройства
+класс TV
+  состояние
+		_name : String
+		_state : Boolean
+		_channel : Number
+		_channelList: String[]   // 1+1 CТБ Интер Украина MusicBox
+		_volume: Number (0-100)
+		_isMute: Boolean
+		_volumeBeforeMute: Number
+
+  поведение
+    getName() : String
+    getState() : Boolean
+    on() : void
+    off() : void
+	  getChannelName(): String
+	  setChannel(number) : void
+	  nextChannel: void
+​​	  previousChannel: void
+    getVolume():Number
+    increaseVolume() : void
+    decreaseVolume() : void
+	  getMute(): Boolean
+    mute() : void
+    unmute() : void*/
