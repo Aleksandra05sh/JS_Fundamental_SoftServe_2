@@ -204,3 +204,69 @@ TV.prototype._chanellValid = function(channelNumber) {
 
 var tv1 = new TV('sumsung')
 
+function SmartHouse(name) {
+  this._name = name;
+  this._devices = [];
+};
+
+SmartHouse.prototype.getName = function(){
+  return this._name ;
+};
+
+SmartHouse.prototype.addDevice = function(device) {
+  if (this.getDeviceByName(device.getName())){
+    alert("Device already Exists");
+  } else {
+    this._devices.push(device);
+  }
+};
+
+SmartHouse.prototype.getDevices = function() {
+  return this._devices;
+};
+
+SmartHouse.prototype.getDeviceByName = function(name) {
+  var device = this._devices.find(function(item) {
+    return item.getName() === name;
+  })
+  return device;
+}
+
+SmartHouse.prototype.deleteDeviceByName = function(name) {
+  var index = this._devices.indexOf(this.getDeviceByName(name));
+  console.log(index)
+  this._devices.splice(index, 1);
+};
+
+SmartHouse.prototype.offAllDevice = function() {
+  this._devices.forEach(function(item) {
+    item.off();
+  })
+};
+
+SmartHouse.prototype.delayedOff1 = function(name, delay){
+  var getDeviceByNameBind = this.getDeviceByName.bind(this)
+
+  setTimeout(function() {
+    getDeviceByNameBind(name).off();
+    console.log('DONE');
+  }, delay);
+}
+
+var sh = new SmartHouse('name1');
+sh.addDevice(new AirConditioning("AirCond1"));
+sh.addDevice(new AirConditioning("AirCond2"));
+sh.addDevice(new TV("TV1"));
+console.log(sh.getDevices());
+console.log(sh.getDeviceByName("AirCond1"));
+sh.getDeviceByName("AirCond1").on();
+console.log(sh.getDeviceByName("AirCond1"));
+sh.getDeviceByName("AirCond2").on();
+console.log(sh.getDeviceByName("AirCond2"));
+sh.deleteDeviceByName("AirCond1")
+console.log(sh.getDevices());
+sh.offAllDevice();
+sh.addDevice(new AirConditioning("AirCond2"));
+sh.getDeviceByName("AirCond2").on();
+sh.delayedOff1('AirCond2', 5000)
+console.log(sh.getDevices());
