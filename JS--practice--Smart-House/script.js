@@ -1,12 +1,37 @@
 'use strict'
 
+
+function Device(name) {
+  this._name = name;
+  this._state = false;
+}
+
+Device.prototype.getName = function() {
+  return this._name;
+};
+
+Device.prototype.getState = function() {
+  return this._state;
+};
+
+Device.prototype.on = function() {
+  this._state = true;
+};
+
+Device.prototype.off = function() {
+  this._state = false;
+};
+
+
+
+
 /*1. Выбрать первое устройство
    Кондиционер
 
 2. Чертеж первого устройства
 класс Сonditioner
   состояние
-		_nanameme : String
+		_name : String
 		_state : Boolean
 		_currentMode : Number
 		_modes: String[]   // heating, cooling, drying, ventilation
@@ -24,28 +49,15 @@
     increaseTemperature() : void
     decreaseTemperature() : void */
 function AirConditioning(name) {
-  this._name = name;
-  this._state = false;
+  Device.call(this, name);
   this._modes = ['heating', 'cooling', 'drying', 'ventilation'];
   this._currentMode = 1
   this._temperature = 20;
 };
 
-AirConditioning.prototype.getName = function() {
-  return this._name;
-};
 
-AirConditioning.prototype.getState = function() {
-  return this._state;
-};
-
-AirConditioning.prototype.on = function() {
-  this._state = true;
-};
-
-AirConditioning.prototype.off = function() {
-  this._state = false;
-};
+AirConditioning.prototype = Object.create(Device.prototype);
+AirConditioning.prototype.constructor = AirConditioning;
 
 AirConditioning.prototype.getCurrentMode = function() {
   return this._modes[this._currentMode];
@@ -105,8 +117,7 @@ var air1 = new AirConditioning('tcl');
     unmute() : void*/
 
 function TV(name) {
-  this._name = name;
-  this._state = false;
+  Device.call(this, name);
   this._channel = 1;
   this._channelList = ['1+1', 'CТБ', 'Интер', 'Украина', 'MusicBox'];
   this._volume = 20;
@@ -114,21 +125,8 @@ function TV(name) {
   this._volumeBeforeMute = this._volume;
 };
 
-TV.prototype.getName = function() {
-  return this._name;
-};
-
-TV.prototype.getState = function() {
-  return this._state;
-};
-
-TV.prototype.on = function() {
-  this._state = true;
-}
-
-TV.prototype.off = function(){
-  this._state = false;
-};
+TV.prototype = Object.create(Device.prototype);
+TV.prototype.constructor = TV;
 
 TV.prototype.getChannelName = function() {
   return this._channelList[this._channel - 1];
