@@ -23,31 +23,6 @@ Device.prototype.off = function() {
 };
 
 
-
-
-/*1. Выбрать первое устройство
-   Кондиционер
-
-2. Чертеж первого устройства
-класс Сonditioner
-  состояние
-		_name : String
-		_state : Boolean
-		_currentMode : Number
-		_modes: String[]   // heating, cooling, drying, ventilation
-		_temperature: Number (14-40)
-
-
-  поведение
-    getName() : String
-    getState() : Boolean
-    on() : void
-    off() : void
-	  getCurrentMode(): String
-	  changeMode() : void
-    getTemperature() : Number
-    increaseTemperature() : void
-    decreaseTemperature() : void */
 function AirConditioning(name) {
   Device.call(this, name);
   this._modes = ['heating', 'cooling', 'drying', 'ventilation'];
@@ -86,35 +61,6 @@ AirConditioning.prototype.decreaseTemperature = function() {
     this._temperature--
   }
 };
-
-var air1 = new AirConditioning('tcl');
-
-/*5. Чертеж второго устройства
-класс TV
-  состояние
-		_name : String
-		_state : Boolean
-		_channel : Number
-		_channelList: String[]   // 1+1 CТБ Интер Украина MusicBox
-		_volume: Number (0-100)
-		_isMute: Boolean
-		_volumeBeforeMute: Number
-
-  поведение
-    getName() : String
-    getState() : Boolean
-    on() : void
-    off() : void
-	  getChannelName(): String
-	  setChannel(number) : void
-	  nextChannel: void
-​​	  previousChannel: void
-    getVolume():Number
-    increaseVolume() : void
-    decreaseVolume() : void
-	  getMute(): Boolean
-    mute() : void
-    unmute() : void*/
 
 function TV(name) {
   Device.call(this, name);
@@ -202,8 +148,6 @@ TV.prototype._chanellValid = function(channelNumber) {
   }
 }
 
-var tv1 = new TV('sumsung')
-
 function SmartHouse(name) {
   this._name = name;
   this._devices = [];
@@ -226,15 +170,14 @@ SmartHouse.prototype.getDevices = function() {
 };
 
 SmartHouse.prototype.getDeviceByName = function(name) {
-  var device = this._devices.find(function(item) {
+  var deviceArr = this._devices.filter(function(item) {
     return item.getName() === name;
   })
-  return device;
+  return deviceArr[0];
 }
 
 SmartHouse.prototype.deleteDeviceByName = function(name) {
   var index = this._devices.indexOf(this.getDeviceByName(name));
-  console.log(index)
   this._devices.splice(index, 1);
 };
 
@@ -266,7 +209,9 @@ console.log(sh.getDeviceByName("AirCond2"));
 sh.deleteDeviceByName("AirCond1")
 console.log(sh.getDevices());
 sh.offAllDevice();
-sh.addDevice(new AirConditioning("AirCond2"));
-sh.getDeviceByName("AirCond2").on();
-sh.delayedOff1('AirCond2', 5000)
 console.log(sh.getDevices());
+sh.addDevice(new AirConditioning("AirCond2"));
+sh.getDeviceByName("TV1").on();
+console.log(sh.getDevices());
+
+
